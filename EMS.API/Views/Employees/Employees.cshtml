@@ -1,0 +1,45 @@
+﻿@using EMS.Core.Domain.Entities
+@using EMS.Core.Domain.Models.Request
+@model List<Employee>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-sm table-borderless" style="max-width:50%">
+@foreach (var employee in Model)
+{
+        <tr>
+            <td>@employee.LastName @employee.FirstName</td>
+            <td><button class="btn btn-primary details" data-id="@employee.Id" data-bs-toggle="modal" data-bs-target="#details-modal">Edit</button></td>
+            <td><button class="btn btn-primary " onclick="location.href='@Url.Action("DeleteById", "Employees", new { id = employee.Id})'">Delete</button></td>
+        </tr>
+}
+</table>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="details-modal">
+    <div class="modal-dialog" style="max-width:50%">
+        <div class="modal-content" style="padding:50px">
+            <div class="modal-header" style="border-bottom:none">
+                <h5 class="modal-title">Edit Employee's Details</h5>
+               
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <button type="button" class="w-100 btn btn-lg btn-primary" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">Cancel</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                debugger;
+                $('.modal-body').load(`/employees/Employee/${$(this).data('id')}`);
+            });
+        })
+    </script>

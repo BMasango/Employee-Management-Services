@@ -1,0 +1,11 @@
+﻿@using EMS.Core.Domain.Models
+@model ValidationResult
+
+<table class="table table-sm table-borderless" style="max-width:50%">
+    @foreach (var error in Model.ValidationMessages)
+    {
+        <tr>
+            <td>@error</td>
+        </tr>
+    }
+</table>

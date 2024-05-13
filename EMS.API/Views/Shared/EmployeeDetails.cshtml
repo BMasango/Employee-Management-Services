@@ -1,0 +1,97 @@
+﻿@using EMS.Core.Domain.Entities
+@using EMS.Core.Domain.Entities.Auth
+@using EMS.Core.Domain.Enums
+@using EMS.Core.Domain.Models
+@using EMS.Core.Domain.Models.Request
+@using Microsoft.AspNetCore
+@using Microsoft.AspNetCore.Identity
+@model EmployeeDetails
+@{
+    ViewData["Title"] = "Edit Customer Information";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("UpdateAsync", "Employees", FormMethod.Post))
+{
+      <form id="employeeDetails">
+        <div class="form-horizontal">
+            <hr />
+            <h6>Personal Details</h6>
+            <div class="form-floating mb-3" hidden>
+                <input asp-for="@Model.Id" class="form-control" autocomplete="id" aria-required="true"  />
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="Jane"/>
+                <label asp-for="@Model.FirstName">First Name</label>
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Doe"  />
+                <label asp-for="@Model.LastName">Last Name</label>
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.ManagersEmail" class="form-control" autocomplete="manageremail" aria-required="true" placeholder="name@example.com"  />
+                <label asp-for="@Model.ManagersEmail">Line Manager's Email</label>
+                <span asp-validation-for="@Model.ManagersEmail" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Role" class="form-control" autocomplete="role" aria-required="true" placeholder="ADMIN"  />
+                <label asp-for="@Model.Role">Role</label>
+                <span asp-validation-for="@Model.Role" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com"  />
+                <label asp-for="@Model.Email">Email</label>
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Age" class="form-control" autocomplete="age" aria-required="true" placeholder="20"  />
+                <label asp-for="@Model.Age">Age</label>
+                <span asp-validation-for="@Model.Age" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                @Html.DropDownListFor(x => x.Gender, Html.GetEnumSelectList<Gender>(), new { @class = "form-control", autocomplete = "gender", required = "true", placeholder = "gender" })
+                <label asp-for="@Model.Gender">Gender</label>
+                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+            <hr />
+            <h6>Address</h6>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Address.AddressLine1" class="form-control" autocomplete="addressLine1" aria-required="true" placeholder="House Number"  />
+                <label asp-for="@Model.Address.AddressLine1">Address Line 1</label>
+                <span asp-validation-for="@Model.Address.AddressLine1" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Address.AddressLine2" class="form-control" autocomplete="addressLine2" aria-required="true" placeholder="Street Address"  />
+                <label asp-for="@Model.Address.AddressLine2">Address Line 2</label>
+                <span asp-validation-for="@Model.Address.AddressLine2" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Address.AddressLine3" class="form-control" autocomplete="addressLine3" aria-required="true" placeholder="Town"  />
+                <label asp-for="@Model.Address.AddressLine3">Address Line 3</label>
+                <span asp-validation-for="@Model.Address.AddressLine3" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Address.CitySuburb" class="form-control" autocomplete="citySuburb" aria-required="true" placeholder="City Or Suburb"  />
+                <label asp-for="@Model.Address.CitySuburb">City or Suburb</label>
+                <span asp-validation-for="@Model.Address.CitySuburb" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                @Html.DropDownListFor(x => x.Address.Province, Html.GetEnumSelectList<Province>(), new { @class = "form-control", autocomplete = "province", required = "true", placeholder = "Gauteng" })
+                <label asp-for="@Model.Address.Province">Province</label>
+                <span asp-validation-for="@Model.Address.Province" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="@Model.Address.PostalCode" class="form-control" autocomplete="postalCode" aria-required="true" placeholder="1234"  />
+                <label asp-for="@Model.Address.PostalCode">Postal Code</label>
+                <span asp-validation-for="@Model.Address.PostalCode" class="text-danger"></span>
+            </div>
+        </div>
+        <button id="updateSubmit" type="submit" class="w-100 btn btn-lg btn-primary" hidden="@Model.SaveHidden">Save</button>
+    </form>
+}

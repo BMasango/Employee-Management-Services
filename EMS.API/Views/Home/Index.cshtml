@@ -1,0 +1,15 @@
+﻿@using EMS.Core.Domain.Entities.Auth
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h2 class="display-4">@User.Identity?.Name</h2>
+    }
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

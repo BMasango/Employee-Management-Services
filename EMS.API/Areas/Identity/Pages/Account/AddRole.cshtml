@@ -1,0 +1,27 @@
+﻿@page
+@model AddRoleModel
+@{
+    ViewData["Title"] = "Add Role";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="addRoleForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Add New Role</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.RoleName" class="form-control" autocomplete="rolename" aria-required="true" placeholder="ADMIN" />
+                <label asp-for="Input.RoleName">Role Name</label>
+                <span asp-validation-for="Input.RoleName" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
